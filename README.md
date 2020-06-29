@@ -13,7 +13,7 @@
 
 ## Project
 
-GoBarber is a Barber application that allows customers to schedule a appointment on Android or IOS, built in Typescript with [Node.js](https://nodejs.org/), [ReactJS](https://github.com/facebook/create-react-app) and [React Native](https://reactnative.dev/) . 
+GoBarber is a Barber application that allows customers to schedule an appointment on Android or IOS, built in Typescript with [Node.js](https://nodejs.org/), [ReactJS](https://github.com/facebook/create-react-app) and [React Native](https://reactnative.dev/) . 
 
 Technologies used in this project:
 
