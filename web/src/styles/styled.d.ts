@@ -10,6 +10,7 @@ declare module 'styled-components' {
       background: string;
       text: string;
       calendar: string;
+      nextAppointmentBackground: string;
       inputBackground: string;
       card: string;
       cardtext: string;

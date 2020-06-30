@@ -94,8 +94,6 @@ const SignUp: React.FC = () => {
             />
 
             <Button type="submit">Entrar</Button>
-
-            <a href="forgot">Esqueci minha senha</a>
           </Form>
 
           <Link to="/">

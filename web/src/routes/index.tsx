@@ -11,16 +11,18 @@ import ResetPassword from '../pages/ResetPassword';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 
-const Routes: React.FC = () => (
-  <Switch>
-    <Route path="/" exact component={SignIn} />
-    <Route path="/signup" component={SignUp} />
-    <Route path="/forgot-password" component={ForgotPassword} />
-    <Route path="/reset-password" component={ResetPassword} />
+const Routes: React.FC = () => {
+  return (
+    <Switch>
+      <Route path="/" exact component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/forgot-password" component={ForgotPassword} />
+      <Route path="/reset-password" component={ResetPassword} />
 
-    <Route path="/profile" component={Profile} isPrivate />
-    <Route path="/dashboard" component={Dashboard} isPrivate />
-  </Switch>
-);
+      <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/dashboard" component={Dashboard} isPrivate />
+    </Switch>
+  );
+};
 
 export default Routes;

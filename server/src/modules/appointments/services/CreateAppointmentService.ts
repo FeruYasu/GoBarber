@@ -25,7 +25,7 @@ class CreateAppointmentService {
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
-  ) { }
+  ) {}
 
   public async execute({
     date,
@@ -76,6 +76,8 @@ class CreateAppointmentService {
         'yyyy-M-d',
       )}`,
     );
+
+    await this.cacheProvider.invalidate(`notifications-list:${provider_id}`);
 
     return appointment;
   }

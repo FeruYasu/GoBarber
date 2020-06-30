@@ -108,7 +108,7 @@ export const NextAppointment = styled.div`
   }
 
   div {
-    background: #3e3b47;
+    background: ${(props) => props.theme.colors.nextAppointmentBackground};
     display: flex;
     align-items: center;
     padding: 16px 24px;
@@ -134,7 +134,8 @@ export const NextAppointment = styled.div`
 
     strong {
       margin-left: 24px;
-      color: #fff;
+      font-size: 20px;
+      color: ${(props) => props.theme.colors.cardtext};
     }
 
     span {
@@ -208,7 +209,7 @@ export const Appointment = styled.div`
     strong {
       margin-left: 24px;
       color: ${(props) => props.theme.colors.cardtext};
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 `;
@@ -242,14 +243,14 @@ export const Calendar = styled.aside`
   }
 
   .DayPicker-Day--available:not(.DayPicker-Day--outside) {
-    background: #3e3b47;
+    background: ${(props) => shade(0.1, props.theme.colors.background)};
     border-radius: 10px;
-    color: #fff;
+    color: ${(props) => props.theme.colors.text};
   }
 
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-    background: ${shade(0.2, '#3e3b47')};
+    background: ${(props) => shade(0.2, props.theme.colors.background)};
   }
 
   .DayPicker-Day--today {

@@ -3,9 +3,13 @@ import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import socketio from 'socket.io-client';
 
 import { FiPower, FiClock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+
+import Notifications from '../../components/Notifications';
+
 import {
   Container,
   Header,
@@ -92,7 +96,7 @@ const Dashboard: React.FC = () => {
 
         setAppointments(appointmentsFormatted);
       });
-  }, [selectedDate]);
+  }, [selectedDate, user.id]);
 
   const disabledDays = useMemo(() => {
     const dates = monthAvailability
@@ -106,6 +110,26 @@ const Dashboard: React.FC = () => {
 
     return dates;
   }, [currentMonth, monthAvailability]);
+
+  const socket = useMemo(() => {
+    return socketio('http://localhost:3333', {
+      query: {
+        user_id: user.id,
+      },
+    });
+  }, [user.id]);
+
+  useEffect(() => {
+    socket.on('newappointment', (date: string) => {
+      const day1 = format(parseISO(date), 'dd-MM-yyyy');
+      const day2 = format(selectedDate, 'dd-MM-yyyy');
+
+      if (day1 === day2) {
+        const formatedDate = parseISO(date);
+        setSelectedDate(formatedDate);
+      }
+    });
+  }, [socket, selectedDate]);
 
   const selectedDateAsText = useMemo(() => {
     return format(selectedDate, "'Dia' dd 'de' MMMM", {
@@ -153,6 +177,8 @@ const Dashboard: React.FC = () => {
               </Link>
             </div>
           </Profile>
+
+          <Notifications socket={socket} />
 
           <button type="button" onClick={signOut}>
             <FiPower />
@@ -227,9 +253,9 @@ const Dashboard: React.FC = () => {
           <DayPicker
             weekdaysShort={['D', 'S', 'T', 'Q', 'Q', 'S', 'S']}
             fromMonth={new Date()}
-            disabledDays={[{ daysOfWeek: [0, 1] }, ...disabledDays]}
+            disabledDays={[{ daysOfWeek: [0, 6] }, ...disabledDays]}
             modifiers={{
-              available: { daysOfWeek: [2, 3, 4, 5, 6] },
+              available: { daysOfWeek: [1, 2, 3, 4, 5] },
             }}
             onMonthChange={handleMonthChange}
             selectedDays={selectedDate}
