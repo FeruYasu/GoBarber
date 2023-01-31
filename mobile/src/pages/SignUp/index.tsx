@@ -56,7 +56,7 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Cadastro realizado com sucesso!',
-          'Você já pode fazer login na aplicação.',
+          'Você já pode fazer login na aplicação.'
         );
 
         navigation.goBack();
@@ -71,11 +71,11 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Erro no cadastro',
-          'Ocorreu um erro ao fazer o cadastro, tente novamente.',
+          'Ocorreu um erro ao fazer o cadastro, tente novamente.'
         );
       }
     },
-    [navigation],
+    [navigation]
   );
 
   return (

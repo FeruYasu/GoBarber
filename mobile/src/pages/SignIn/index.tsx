@@ -43,9 +43,7 @@ const SignIn: React.FC = () => {
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  const { signIn, user } = useAuth();
-
-  console.log(user);
+  const { signIn } = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -74,11 +72,11 @@ const SignIn: React.FC = () => {
 
         Alert.alert(
           'Erro na autenticação',
-          'Ocorreu um erro ao fazer login, cheque as credencias.',
+          'Ocorreu um erro ao fazer login, cheque as credencias.'
         );
       }
     },
-    [signIn],
+    [signIn]
   );
 
   return (
@@ -105,7 +103,6 @@ const SignIn: React.FC = () => {
                 keyboardType="email-address"
                 name="email"
                 icon="mail"
-                placeholder="E-mail"
                 returnKeyType="next"
                 onSubmitEditing={() => {
                   passwordInputRef.current.focus();
